@@ -8,10 +8,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git"
+    "url": "git+http://git.theone74.ru/npm/conf-fs.git"
   },
   "keywords": [
-    "keywords"
+    "conf", "fs"
   ],
   "author": "Romanov A. <iam@theone74.ru>",
   "license": "ISC"
