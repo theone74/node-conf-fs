@@ -3,11 +3,19 @@
 var fs   = require('fs');
 var path = require('path');
 
+var mkdirpSync = function (dirpath) {
+  var parts = dirpath.split(path.sep);
+  for( var i = 1; i <= parts.length; i++ ) {
+    var dir = path.join.apply(null, parts.slice(0, i));
+    if (!fs.existsSync( dir )) fs.mkdirSync( dir );
+  }
+}
+
 module.exports = function(confpath) {
 	var _path = path.resolve(confpath || __dirname, 'conf');
-	if (!fs.existsSync(_path)) fs.mkdirSync(_path);
+	//mkdirpSync(_path);
 	_path = path.resolve(_path, process.env.NODE_ENV || 'production');
-	if (!fs.existsSync(_path)) fs.mkdirSync(_path);
+	mkdirpSync(_path);
 
 	return {
 		path: _path,
@@ -32,4 +40,3 @@ module.exports = function(confpath) {
 	}
 	
 };
-
