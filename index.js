@@ -6,7 +6,7 @@ var path = require('path');
 var mkdirpSync = function (dirpath) {
   var parts = dirpath.split(path.sep);
   for( var i = 1; i <= parts.length; i++ ) {
-    var dir = path.join.apply(null, parts.slice(0, i));
+    var dir = path.sep + path.join.apply(null, parts.slice(0, i));
     if (!fs.existsSync( dir )) fs.mkdirSync( dir );
   }
 }
