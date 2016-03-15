@@ -4,11 +4,14 @@ var fs   = require('fs');
 var path = require('path');
 
 var mkdirpSync = function (dirpath) {
-  var parts = dirpath.split(path.sep);
-  for( var i = 1; i <= parts.length; i++ ) {
-    var dir = path.sep + path.join.apply(null, parts.slice(0, i));
-    if (!fs.existsSync( dir )) fs.mkdirSync( dir );
-  }
+    var parts = dirpath.split(path.sep);
+    for( var i = 1; i <= parts.length; i++ ) {
+        var dir = (process.platform == 'win32' ? '' : path.sep) 
+					+ path.join.apply(null, parts.slice(0, i));
+        if (!fs.existsSync( dir )) {
+            fs.mkdirSync( dir );
+        }
+    }
 }
 
 module.exports = function(confpath) {
