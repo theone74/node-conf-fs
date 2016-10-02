@@ -13,7 +13,8 @@ var mkdirpSync = function (dirpath) {
         }
     }
 }
-
+// TODO runtime cache values
+// TODO change events
 module.exports = function(confpath) {
 	var _path = path.resolve(confpath || __dirname, 'conf');
 	//mkdirpSync(_path);
