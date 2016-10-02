@@ -39,6 +39,15 @@ module.exports = function(confpath) {
 		set: function(name, value) {
 			var fn = path.resolve(this.path, name + '.json');
 			fs.writeFileSync(fn, JSON.stringify(value));
+		},
+		unset: function(name) {
+		    // var fn = path.resolve(this.path, name + '.json');
+		    // TODO remove file
+		},
+		list: function() {
+		    var list = [];
+		    // TODO get file list
+		    return list;
 		}
 	}
 	
