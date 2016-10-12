@@ -24,11 +24,11 @@ module.exports = function(confpath) {
 	return {
 		path: _path,
 		get: function(name, def) {
-			var fn = path.resolve(this.path, name + '.json');
 			def = def || null;
-			if (!fs.existsSync(fn)) {
+			if (!this.exists(name)) {
 				return def;
 			}
+			var fn = path.resolve(this.path, name + '.json');
 			var data = fs.readFileSync(fn);
 			try {
 				return JSON.parse(data);
@@ -42,13 +42,28 @@ module.exports = function(confpath) {
 			fs.writeFileSync(fn, JSON.stringify(value));
 		},
 		unset: function(name) {
-		    // var fn = path.resolve(this.path, name + '.json');
-		    // TODO remove file
+		    var fn = path.resolve(this.path, name + '.json');
+		    fs.unlinkSync(fn);
+		},
+		exists: function(name){
+		    var fn = path.resolve(this.path, name + '.json');
+		    try {
+		        fs.statSync(fn);
+		        return true;
+		    }
+		    catch(e) {
+		        return false;
+		    }
 		},
 		list: function() {
-		    var list = [];
-		    // TODO get file list
-		    return list;
+		    var list = fs.readdirSync(this.path);
+		    return list
+		        .filter(function(file){
+		            return path.extname(file) == '.json';
+		        })
+		        .map(function(file){
+		            return path.basename(file, '.json');
+		        });
 		}
 	}
 	
