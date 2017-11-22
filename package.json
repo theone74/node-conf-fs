@@ -1,14 +1,11 @@
 {
-  "name": "conf-fs",
+  "name": "node-conf-fs",
   "version": "0.0.1",
   "description": "config based on fs",
   "main": "index.js",
-  "scripts": {
-    "test": "test"
-  },
   "repository": {
     "type": "git",
-    "url": "git+http://git.theone74.ru/npm/conf-fs.git"
+    "url": "https://github.com/theone74/node-conf-fs"
   },
   "keywords": [
     "conf", "fs"
